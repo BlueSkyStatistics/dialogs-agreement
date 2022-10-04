@@ -31,18 +31,6 @@ For detailed help click on the R icon on the top right hand side of this dialog 
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 class intraClassCorrelationCoefficients extends baseModal {
     constructor() {
         var config = {

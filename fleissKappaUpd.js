@@ -49,7 +49,7 @@ For detailed help click on the R icon on the top right hand side of this dialog 
 `}
     }
 }
-var options = require('../library/options').element
+
 class fleissKappaUpd extends baseModal {
     constructor() {
         var config = {

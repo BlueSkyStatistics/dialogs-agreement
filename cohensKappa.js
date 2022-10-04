@@ -29,14 +29,6 @@ For detailed help click on the R icon on the top right hand side of this dialog 
     }
 }
 
-
-
-
-
-
-
-
-
 class cohensKappa extends baseModal {
     constructor() {
         var config = {
