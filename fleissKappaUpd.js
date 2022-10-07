@@ -135,7 +135,7 @@ BSkyFormat(fkappa.res$categories, singleTableOutputHeader = "Rating categories u
             },
         }
         var opts = {
-            el: new options(config, {
+            el: new optionsVar(config, {
                 no: "fk_options",
                 name: localization.en.options,
                 content: [
