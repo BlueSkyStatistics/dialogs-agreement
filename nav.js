@@ -3,14 +3,6 @@ const nav = {
     "tab": "agreement",
     "buttons": [
         {
-            "name": "Scale",
-            "icon": "icon-standardize",
-            "children": [
-                "./reliabilityAnalysisCronbachsAlpha",
-                "./reliabilityAnalysisMcDonaldsOmega"
-            ]
-        },
-        {
             "name": "Method",
             "icon": "icon-layout",
             "children": [
@@ -20,7 +12,16 @@ const nav = {
                 "./fleissKappaUpd",
                 "./intraClassCorrelationCoefficients"
             ]
+        },        
+        {
+            "name": "Scale",
+            "icon": "icon-standardize",
+            "children": [
+                "./reliabilityAnalysisCronbachsAlpha",
+                "./reliabilityAnalysisMcDonaldsOmega"
+            ]
         }
+
     ]
 }
 
