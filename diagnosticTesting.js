@@ -1,53 +1,13 @@
 
-var localization = {
-    en: {
-        title: "Diagnostic Testing",
-        navigation: "Diagnostic Testing",
-        outvar: "Outcome Variable (1=positive, 0=negative):",
-        testvar: "Test Variable (1=positive, 0=negative):",
-        cilevel: "Confidence Level:",
-        help: {
-            title: "Diagnostic Testing",
-            r_help: "help(epi.tests,package=epiR)",
-            body: `
-<b>Description</b></br>
-This computes various measures appropriate in diagnostic testing studies for a binary test versus a binary gold standard outcome for detecting a "disease".<br/>
-Outcome Variable: Variable containing the values for the gold standard.  This must be a numeric variable coded as 1 = "disease" positive and 0 = "disease" negative, since the computations depend on this order.<br/>
-Test Variable: Variable containing the values for the test under consideration.  This must be a numeric variable coded as 1 = "disease" positive and 0 = "disease" negative, since the computations depend on this order.<br/>
-Confidence Level: Desired confidence interval level<br/>
-<br/>
-<b>Usage</b>
-<br/>
-<code> 
-epi.tests(dat, conf.level = 0.95)
-</code> <br/>
-<b>Arguments</b><br/>
-<ul>
-<li>
-dat: An object of class table containing the individual cell frequencies created by tabulating the outcome and test variable. The Outcome Variable contains the values for the gold standard.  This must be a numeric variable coded as 1 = "disease" positive and 0 = "disease" negative, since the computations depend on this order. The test variable contains the values for the test under consideration.  This must be a numeric variable coded as 1 = "disease" positive and 0 = "disease" negative, since the computations depend on this order.
-</li>
-<li>
-Confidence Level: Desired confidence interval level
-</li>
-</ul>
-<b>Details</b></br>
-Exact binomial confidence limits are calculated for test sensitivity, specificity, and positive and negative predictive value (see Collett 1999 for details).</br>
-Confidence intervals for positive and negative likelihood ratios are based on formulae provided by Simel et al. (1991).</br>
-Diagnostic accuracy is defined as the proportion of all tests that give a correct result. Diagnostic odds ratio is defined as how much more likely will the test make a correct diagnosis than an incorrect diagnosis in patients with the disease (Scott et al. 2008). The number needed to diagnose is defined as the number of paitents that need to be tested to give one correct positive test. Youden's index is the difference between the true positive rate and the false positive rate. Youden's index ranges from -1 to +1 with values closer to 1 if both sensitivity and specificity are high (i.e. close to 1).</br>
-<b>Value</b></br>
-See detailed help below to access R help that will describe the values returned</br>
-<b>Package</b></br>
-epiR;DescTools</br>
-<b>Help</b></br>
-For detailed help click on the R icon on the top right hand side of this dialog overlay or run the following command help(epi.tests,package=epiR) by creating a R code chunk by clicking + in the output window
-			`}
-    }
-}
+
 class diagnosticTesting extends baseModal {
+    static dialogId = 'diagnosticTesting'
+    static t = baseModal.makeT(diagnosticTesting.dialogId)
+
     constructor() {
         var config = {
-            id: "diagnosticTesting",
-            label: localization.en.title,
+            id: diagnosticTesting.dialogId,
+            label: diagnosticTesting.t('title'),
             modalType: "two",
             RCode: `
 require(epiR)
@@ -78,7 +38,7 @@ desctools.exit <- detach("package:DescTools")
             content_var: { el: new srcVariableList(config, { action: "move" }) },
             outvar: {
                 el: new dstVariable(config, {
-                    label: localization.en.outvar,
+                    label: diagnosticTesting.t('outvar'),
                     no: "outvar",
                     filter: "Numeric|Scale",
                     extraction: "NoPrefix|UseComma",
@@ -87,7 +47,7 @@ desctools.exit <- detach("package:DescTools")
             },
             testvar: {
                 el: new dstVariable(config, {
-                    label: localization.en.testvar,
+                    label: diagnosticTesting.t('testvar'),
                     no: "testvar",
                     filter: "Numeric|Scale",
                     extraction: "NoPrefix|UseComma",
@@ -97,7 +57,7 @@ desctools.exit <- detach("package:DescTools")
             cilevel: {
                 el: new advancedSlider(config, {
                     no: "cilevel",
-                    label: localization.en.cilevel,
+                    label: diagnosticTesting.t('cilevel'),
                     min: 0,
                     max: 1,
                     step: 0.05,
@@ -105,22 +65,31 @@ desctools.exit <- detach("package:DescTools")
                     extraction: "NoPrefix|UseComma"
                 })
             },
-            label1: { el: new labelVar(config, { label: localization.en.label1, h: 6 }) },
-            equal: { el: new radioButton(config, { label: localization.en.equal, no: "weight", increment: "equal", value: "two.sided", state: "checked", extraction: "ValueAsIs" }) },
-            quadratic: { el: new radioButton(config, { label: localization.en.quadratic, no: "weight", increment: "quadratic", value: "greater", state: "", extraction: "ValueAsIs" }) },
+            label1: { el: new labelVar(config, { label: diagnosticTesting.t('label1'), h: 6 }) },
+            equal: { el: new radioButton(config, { label: diagnosticTesting.t('equal'), no: "weight", increment: "equal", value: "two.sided", state: "checked", extraction: "ValueAsIs" }) },
+            quadratic: { el: new radioButton(config, { label: diagnosticTesting.t('quadratic'), no: "weight", increment: "quadratic", value: "greater", state: "", extraction: "ValueAsIs" }) },
         }
         const content = {
             left: [objects.content_var.el.content],
             right: [objects.outvar.el.content, objects.testvar.el.content, objects.cilevel.el.content],
             nav: {
-                name: localization.en.navigation,
+                name: diagnosticTesting.t('navigation'),
                 //  icon: "icon-dt",
                 icon: "icon-table_basic",
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: diagnosticTesting.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: diagnosticTesting.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new diagnosticTesting().render()
+
+module.exports = {
+    render: () => new diagnosticTesting().render()
+}

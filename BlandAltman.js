@@ -1,61 +1,14 @@
 
-var localization = {
-    en: {
-        title: "Bland-Altman Plot",
-        navigation: "Bland-Altman Plot",
-        Group1: "Observer 1 Value:",
-        Group2: "Observer 2 Value:",
-        StandardDevWidth: "Standard Deviation Width",
-        label1: "Differences calculated as Observer 1 - Observer 2",
-        label2: "To change the default settings on the plot including titles, line types, and line colors, modify the Plot Options",
-        maintitle: "Main title",
-        ylab: "Y axis label (Difference)",
-        xlab: "X axis label (Mean)",
-        label3: "Diff = 0 Reference Line",
-        Ref0Color: "Color (After color selection, click outside the control to apply)",
-        Ref0LineType: "Line Type",
-        label4: "Mean Difference Line",
-        MeanDiffColor: "Color (After color selection, click outside the control to apply)",
-        MeanDiffLineType: "Line Type",
-        label5: "SD Reference Lines",
-        SDRefLineColor: "Color (After color selection, click outside the control to apply)",
-        SDRefLineType: "Line Type",
-        label6: "Options for Confidence Intervals for Mean and SD Lines",
-        ExtraCI: "Plot CIs for Primary Lines",
-        CIValue: "CI Level (%)",
-        label7: "Mean Diff CI",
-        MeanDiffCIColor: "Color (After color selection, click outside the control to apply)",
-        MeanDiffCILineType: "Line Type",
-        label8: "SD CI",
-        SDCIColor: "Color (After color selection, click outside the control to apply)",
-        SDCILineType: "Line Type",
-        PlotTheme: "Plot Theme",
-        help: {
-            title: "Bland-Altman Plot",
-            r_help: "help(bland.altman.stats, package='BlandAltmanLeh')",
-            body: `
-<b>Description</b></br>
-This plot is used to assess the agreement between two continuous measurements. This is commonly used to compare values between two observers or a new assay to a gold standard assay.​</br>
-This plot may also be known as a Tukey mean-difference plot.​</br>
-Observer 1 Value: Specify the variable containing the numeric value as scored by observer 1.​</br>
-Observer 2 Value: Specify the variable containing the numeric value as scored by observer 2.​</br>
-Standard Deviation Width: Specify how many standard deviations from the mean difference reference you would like reference lines drawn.</br>
-Additional plotting options can be modified using the Plot Options menu. </br>
-A table of the values for each of the lines are included with the figure in the output.</br>
-We use bland.altman.stats function within the BlandAltmanLeh package to calculate differences and mean values for the chosen varianles and ggplot function withing the ggplot2 package to create this plot</br>
-<b>Package</b></br>
-BlandAltmanLeh;ggplot2;ggthemes</br>
-<b>Help</b></br>
-For detailed help click on the R icon on the top right hand side of this dialog overlay or run the following command help(bland.altman.stats, package="BlandAltmanLeh") by creating a R code chunk by clicking + in the output window
-                `}
-    }
-}
+
 
 class BlandAltman extends baseModal {
+    static dialogId = 'BlandAltman'
+    static t = baseModal.makeT(BlandAltman.dialogId)
+
     constructor() {
         var config = {
-            id: "BlandAltman",
-            label: localization.en.title,
+            id: BlandAltman.dialogId,
+            label: BlandAltman.t('title'),
             modalType: "two",
             RCode: `
 require(BlandAltmanLeh)
@@ -83,11 +36,11 @@ print(ba.plot)
 `
         }
         var objects = {
-            label1: { el: new labelVar(config, { label: localization.en.label1, h: 6 }) },
+            label1: { el: new labelVar(config, { label: BlandAltman.t('label1'), h: 6 }) },
             content_var: { el: new srcVariableList(config, {action: "move"}) },
             Group1: {
                 el: new dstVariable(config, {
-                    label: localization.en.Group1,
+                    label: BlandAltman.t('Group1'),
                     no: "Group1",
                     filter: "Numeric|Scale",
                     extraction: "NoPrefix|UseComma",
@@ -96,7 +49,7 @@ print(ba.plot)
             },
             Group2: {
                 el: new dstVariable(config, {
-                    label: localization.en.Group2,
+                    label: BlandAltman.t('Group2'),
                     no: "Group2",
                     filter: "Numeric|Scale",
                     extraction: "NoPrefix|UseComma",
@@ -106,7 +59,7 @@ print(ba.plot)
             StandardDevWidth: {
                 el: new advancedSlider(config, {
                     no: "StandardDevWidth",
-                    label: localization.en.StandardDevWidth,
+                    label: BlandAltman.t('StandardDevWidth'),
                     min: 0,
                     max: 3,
                     step: 0.01,
@@ -114,11 +67,11 @@ print(ba.plot)
                     extraction: "NoPrefix|UseComma"
                 })
             },
-            label2: { el: new labelVar(config, { label: localization.en.label2, h: 6 }) },
+            label2: { el: new labelVar(config, { label: BlandAltman.t('label2'), h: 6 }) },
             maintitle: {
                 el: new input(config, {
                     no: 'maintitle',
-                    label: localization.en.maintitle,
+                    label: BlandAltman.t('maintitle'),
                     placeholder: "",
                     allow_spaces:true,
                     extraction: "TextAsIs",
@@ -129,7 +82,7 @@ print(ba.plot)
             ylab: {
                 el: new input(config, {
                     no: 'ylab',
-                    label: localization.en.ylab,
+                    label: BlandAltman.t('ylab'),
                     allow_spaces:true,
                     value: "Difference",
                     extraction: "TextAsIs",
@@ -139,18 +92,18 @@ print(ba.plot)
             xlab: {
                 el: new input(config, {
                     no: 'xlab',
-                    label: localization.en.xlab,
+                    label: BlandAltman.t('xlab'),
                     allow_spaces:true,
                     value: "Mean",
                     extraction: "TextAsIs",
                     type: "character"
                 })
             },
-            label3: { el: new labelVar(config, { label: localization.en.label3, h: 6 }) },
+            label3: { el: new labelVar(config, { label: BlandAltman.t('label3'), h: 6 }) },
             Ref0Color: {
                 el: new colorInput(config, {
                     no: 'Ref0Color',
-                    label: localization.en.Ref0Color,
+                    label: BlandAltman.t('Ref0Color'),
                     placeholder: "#000000",
                     allow_spaces:true,
                     type: "character",
@@ -161,18 +114,18 @@ print(ba.plot)
             Ref0LineType: {
                 el: new comboBox(config, {
                     no: 'Ref0LineType',
-                    label: localization.en.Ref0LineType,
+                    label: BlandAltman.t('Ref0LineType'),
                     multiple: false,
                     extraction: "NoPrefix|UseComma",
                     options: ["solid", "dashed", "dotted", "dotdash", "longdash", "twodash"],
                     default: "solid"
                 })
             },
-            label4: { el: new labelVar(config, { label: localization.en.label4, h: 6 }) },
+            label4: { el: new labelVar(config, { label: BlandAltman.t('label4'), h: 6 }) },
             MeanDiffColor: {
                 el: new colorInput(config, {
                     no: 'MeanDiffColor',
-                    label: localization.en.MeanDiffColor,
+                    label: BlandAltman.t('MeanDiffColor'),
                     placeholder: "#000000",
                     allow_spaces:true,
                     type: "character",
@@ -183,18 +136,18 @@ print(ba.plot)
             MeanDiffLineType: {
                 el: new comboBox(config, {
                     no: 'MeanDiffLineType',
-                    label: localization.en.MeanDiffLineType,
+                    label: BlandAltman.t('MeanDiffLineType'),
                     multiple: false,
                     extraction: "NoPrefix|UseComma",
                     options: ["solid", "dashed", "dotted", "dotdash", "longdash", "twodash"],
                     default: "dashed"
                 })
             },
-            label5: { el: new labelVar(config, { label: localization.en.label5, h: 6 }) },
+            label5: { el: new labelVar(config, { label: BlandAltman.t('label5'), h: 6 }) },
             SDRefLineColor: {
                 el: new colorInput(config, {
                     no: 'SDRefLineColor',
-                    label: localization.en.SDRefLineColor,
+                    label: BlandAltman.t('SDRefLineColor'),
                     placeholder: "#000000",
                     allow_spaces:true,
                     type: "character",
@@ -205,17 +158,17 @@ print(ba.plot)
             SDRefLineType: {
                 el: new comboBox(config, {
                     no: 'SDRefLineType',
-                    label: localization.en.SDRefLineType,
+                    label: BlandAltman.t('SDRefLineType'),
                     multiple: false,
                     extraction: "NoPrefix|UseComma",
                     options: ["solid", "dashed", "dotted", "dotdash", "longdash", "twodash"],
                     default: "longdash"
                 })
             },
-            label6: { el: new labelVar(config, { label: localization.en.label6, h: 6 }) },
+            label6: { el: new labelVar(config, { label: BlandAltman.t('label6'), h: 6 }) },
             ExtraCI: {
                 el: new checkbox(config, {
-                    label: localization.en.ExtraCI,
+                    label: BlandAltman.t('ExtraCI'),
                     no: "ExtraCI",
                     bs_type: "valuebox",
                     extraction: "BooleanValue",
@@ -226,7 +179,7 @@ print(ba.plot)
             CIValue: {
                 el: new advancedSlider(config, {
                     no: "CIValue",
-                    label: localization.en.CIValue,
+                    label: BlandAltman.t('CIValue'),
                     min: 0,
                     max: 100,
                     step: 5,
@@ -234,11 +187,11 @@ print(ba.plot)
                     extraction: "NoPrefix|UseComma"
                 })
             },
-            label7: { el: new labelVar(config, { label: localization.en.label7, h: 6 }) },
+            label7: { el: new labelVar(config, { label: BlandAltman.t('label7'), h: 6 }) },
             MeanDiffCIColor: {
                 el: new colorInput(config, {
                     no: 'MeanDiffCIColor',
-                    label: localization.en.MeanDiffCIColor,
+                    label: BlandAltman.t('MeanDiffCIColor'),
                     placeholder: "#FF0000",
                     allow_spaces:true,
                     type: "character",
@@ -249,18 +202,18 @@ print(ba.plot)
             MeanDiffCILineType: {
                 el: new comboBox(config, {
                     no: 'MeanDiffCILineType',
-                    label: localization.en.MeanDiffCILineType,
+                    label: BlandAltman.t('MeanDiffCILineType'),
                     multiple: false,
                     extraction: "NoPrefix|UseComma",
                     options: ["solid", "dashed", "dotted", "dotdash", "longdash", "twodash"],
                     default: "dotted"
                 })
             },
-            label8: { el: new labelVar(config, { label: localization.en.label8, h: 6 }) },
+            label8: { el: new labelVar(config, { label: BlandAltman.t('label8'), h: 6 }) },
             SDCIColor: {
                 el: new colorInput(config, {
                     no: 'SDCIColor',
-                    label: localization.en.SDCIColor,
+                    label: BlandAltman.t('SDCIColor'),
                     placeholder: "#0000FF",
                     allow_spaces:true,
                     type: "character",
@@ -271,7 +224,7 @@ print(ba.plot)
             SDCILineType: {
                 el: new comboBox(config, {
                     no: 'SDCILineType',
-                    label: localization.en.SDCILineType,
+                    label: BlandAltman.t('SDCILineType'),
                     multiple: false,
                     extraction: "NoPrefix|UseComma",
                     options: ["solid", "dashed", "dotted", "dotdash", "longdash", "twodash"],
@@ -281,7 +234,7 @@ print(ba.plot)
             PlotTheme: {
                 el: new comboBox(config, {
                     no: 'PlotTheme',
-                    label: localization.en.PlotTheme,
+                    label: BlandAltman.t('PlotTheme'),
                     multiple: false,
                     extraction: "NoPrefix|UseComma",
                     options: ["theme_base()",  "theme_calc()", "theme_clean()", "theme_economist()", "theme_economist_white()", "theme_excel()", "theme_excel_new()", "theme_few()", "theme_fivethirtyeight()", "theme_foundation()", "theme_gdocs()", "theme_grey()", "theme_hc()", "theme_igray()", "theme_map()", "theme_pander()", "theme_par()", "theme_solarized()", "theme_solarized2()", "theme_solid()", "theme_stata()", "theme_tufte()", "theme_wsj()"],
@@ -325,13 +278,22 @@ print(ba.plot)
             right: [objects.Group1.el.content, objects.Group2.el.content, objects.StandardDevWidth.el.content,],
             bottom: [objects.label2.el.content, plotOptions.el.content],
             nav: {
-                name: localization.en.navigation,
+                name: BlandAltman.t('navigation'),
                 icon: "icon-bland_altman",
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: BlandAltman.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: BlandAltman.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new BlandAltman().render()
+
+module.exports = {
+    render: () => new BlandAltman().render()
+}
