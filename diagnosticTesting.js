@@ -65,9 +65,9 @@ desctools.exit <- detach("package:DescTools")
                     extraction: "NoPrefix|UseComma"
                 })
             },
-            label1: { el: new labelVar(config, { label: diagnosticTesting.t('label1'), h: 6 }) },
+            /*label1: { el: new labelVar(config, { label: diagnosticTesting.t('label1'), h: 6 }) },
             equal: { el: new radioButton(config, { label: diagnosticTesting.t('equal'), no: "weight", increment: "equal", value: "two.sided", state: "checked", extraction: "ValueAsIs" }) },
-            quadratic: { el: new radioButton(config, { label: diagnosticTesting.t('quadratic'), no: "weight", increment: "quadratic", value: "greater", state: "", extraction: "ValueAsIs" }) },
+            quadratic: { el: new radioButton(config, { label: diagnosticTesting.t('quadratic'), no: "weight", increment: "quadratic", value: "greater", state: "", extraction: "ValueAsIs" }) },*/
         }
         const content = {
             left: [objects.content_var.el.content],
