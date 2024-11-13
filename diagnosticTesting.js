@@ -105,9 +105,9 @@ desctools.exit <- detach("package:DescTools")
                     extraction: "NoPrefix|UseComma"
                 })
             },
-            label1: { el: new labelVar(config, { label: localization.en.label1, h: 6 }) },
+            /*label1: { el: new labelVar(config, { label: localization.en.label1, h: 6 }) },
             equal: { el: new radioButton(config, { label: localization.en.equal, no: "weight", increment: "equal", value: "two.sided", state: "checked", extraction: "ValueAsIs" }) },
-            quadratic: { el: new radioButton(config, { label: localization.en.quadratic, no: "weight", increment: "quadratic", value: "greater", state: "", extraction: "ValueAsIs" }) },
+            quadratic: { el: new radioButton(config, { label: localization.en.quadratic, no: "weight", increment: "quadratic", value: "greater", state: "", extraction: "ValueAsIs" }) },*/
         }
         const content = {
             left: [objects.content_var.el.content],
