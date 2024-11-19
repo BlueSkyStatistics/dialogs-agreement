@@ -1,6 +1,5 @@
-
-var localization ={
-    en:{  
+var localization = {
+    en: {  
         title: "Intraclass Correlation Coefficients",
         navigation:   "Intraclass Correlation Coefficients",
         ratervars: "Rater Variables:",
@@ -26,9 +25,7 @@ psych</br>
 <b>Help</b></br>
 For detailed help click on the R icon on the top right hand side of this dialog overlay or run the following command help(ICC, package=psych) by creating a R code chunk by clicking + in the output window
 			`}
-            
-}
-
+	}
 }
 
 class intraClassCorrelationCoefficients extends baseModal {
