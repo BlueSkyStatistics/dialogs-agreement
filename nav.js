@@ -1,9 +1,10 @@
-const nav = {
-    "name": "Agreement",
+let t = getT('menutoolbar')
+const nav = () => ({
+    "name": t('agreement_top_level_title'),// {ns: 'menutoolbar'}),
     "tab": "agreement",
     "buttons": [
         {
-            "name": "Method",
+            "name": t('agreement_Method'),// {ns: 'menutoolbar'}),
             "icon": "icon-layout",
             "children": [
                 "./BlandAltman",
@@ -14,7 +15,7 @@ const nav = {
             ]
         },        
         {
-            "name": "Scale",
+            "name": t('agreement_Scale'),// {ns: 'menutoolbar'}),
             "icon": "icon-standardize",
             "children": [
                 "./reliabilityAnalysisCronbachsAlpha",
@@ -23,6 +24,9 @@ const nav = {
         }
 
     ]
-}
+})
 
-module.exports.nav = nav
+module.exports = {
+    nav: nav(),
+    render: () => nav()
+}
