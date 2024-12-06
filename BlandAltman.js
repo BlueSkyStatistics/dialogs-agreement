@@ -30,6 +30,7 @@ var localization = {
         SDCIColor: "Color (After color selection, click outside the control to apply)",
         SDCILineType: "Line Type",
         PlotTheme: "Plot Theme",
+		OptvarPlotsOpt: "Plot Options",
         help: {
             title: "Bland-Altman Plot",
             r_help: "help(bland.altman.stats, package='BlandAltmanLeh')",
@@ -292,7 +293,7 @@ print(ba.plot)
         var plotOptions = {
             el: new optionsVar(config, {
                 no: "plotOptions",
-                name: "Plot Options",
+                name: localization.en.OptvarPlotsOpt,
                 content: [
                     objects.maintitle.el,
                     objects.ylab.el,
