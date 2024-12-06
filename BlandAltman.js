@@ -245,7 +245,7 @@ print(ba.plot)
         var plotOptions = {
             el: new optionsVar(config, {
                 no: "plotOptions",
-                name: "Plot Options",
+                name: BlandAltman.t('OptvarPlotsOpt'),
                 content: [
                     objects.maintitle.el,
                     objects.ylab.el,
