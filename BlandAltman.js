@@ -287,7 +287,7 @@ print(ba.plot)
         
         this.help = {
             title: BlandAltman.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: BlandAltman.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: BlandAltman.t('help.body')
         }
 ;

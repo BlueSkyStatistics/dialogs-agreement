@@ -112,7 +112,7 @@ BSkyFormat(fkappa.res$categories, singleTableOutputHeader = "Rating categories u
         
         this.help = {
             title: fleissKappaUpd.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: fleissKappaUpd.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: fleissKappaUpd.t('help.body')
         }
 ;

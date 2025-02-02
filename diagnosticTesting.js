@@ -83,7 +83,7 @@ desctools.exit <- detach("package:DescTools")
         
         this.help = {
             title: diagnosticTesting.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: diagnosticTesting.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: diagnosticTesting.t('help.body')
         }
 ;

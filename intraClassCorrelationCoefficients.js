@@ -92,7 +92,7 @@ class intraClassCorrelationCoefficients extends baseModal {
         
         this.help = {
             title: intraClassCorrelationCoefficients.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: intraClassCorrelationCoefficients.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: intraClassCorrelationCoefficients.t('help.body')
         }
 ;

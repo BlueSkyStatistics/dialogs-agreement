@@ -61,7 +61,7 @@ class reliabilityAnalysisCronbachsAlpha extends baseModal {
         
         this.help = {
             title: reliabilityAnalysisCronbachsAlpha.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: reliabilityAnalysisCronbachsAlpha.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: reliabilityAnalysisCronbachsAlpha.t('help.body')
         }
 ;

@@ -40,7 +40,7 @@ class reliabilityAnalysisMcDonaldsOmega extends baseModal {
         
         this.help = {
             title: reliabilityAnalysisMcDonaldsOmega.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: reliabilityAnalysisMcDonaldsOmega.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: reliabilityAnalysisMcDonaldsOmega.t('help.body')
         }
 ;
