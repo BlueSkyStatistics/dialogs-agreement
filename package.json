@@ -1,11 +1,11 @@
 {
     "name": "@BlueSkyStatistics/dialogs/aggreement",
-    "productName": "BlueSky Statistics Agreements dialogs",
+    "productName": "BioStat Prime Agreements dialogs",
     "description": "Agreements dialogs",
     "keywords": [],
     "main": "nav.js",
     "version": "1.0.5",
-    "author": "BlueSky Statistics",
+    "author": "BioStat Prime",
     "scripts": {},
     "dependencies": {
         "squirrelly": "7.9.2"
