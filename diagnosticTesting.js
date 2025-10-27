@@ -18,19 +18,22 @@ class diagnosticTesting extends baseModal {
             RCode: `
 require(epiR)
 require(DescTools)
+require(dplyr)
 # create the frequency table
 # use the Rev function to reverse the row and column order so that the larger numeric value is ordered first
 mytable <- Rev(table({{dataset.name}}\${{selected.testvar | safe}}, {{dataset.name}}\${{selected.outvar | safe}}, useNA="no"), margin=c(1,2))
 #Perform the test
 BSkyres <- epi.tests(mytable, conf.level={{selected.cilevel | safe}})
 # create the statistic table
-BSkyres.table <- rbind(BSkyres$detail$se, BSkyres$detail$sp, 
-	BSkyres$detail$pv.pos, BSkyres$detail$pv.neg, BSkyres$detail$diag.ac, 
-	BSkyres$detail$lr.pos, BSkyres$detail$lr.neg, BSkyres$detail$nndx, 
-	BSkyres$detail$youden, BSkyres$detail$p.rout, BSkyres$detail$p.rin, 
-	BSkyres$detail$p.tpdn, BSkyres$detail$p.tndp, BSkyres$detail$p.dntp, BSkyres$detail$p.dptn, BSkyres$detail$diag.or, 
-	BSkyres$detail$ap, BSkyres$detail$tp)
-rownames(BSkyres.table) <- c("Sensitivity", "Specificity", \n\t"Positive Predictive Value (PPV)", "Negative Predictive Value (NPV)", \n\t"Diagnostic Accuracy", "Likelihood Ratio (+ test)", \n\t"Likelihood Ratio (- test)", "Number Needed to Diagnose", \n\t"Youden's Index", "Proportion Outcome Ruled Out", \n\t"Proportion Outcome Ruled In", "proportion of true outcome negative subjects that test positive", \n\t"proportion of true outcome positive subjects that test negative", "proportion of test positive subjects that are outcome negative","proportion of test negative subjects that are outcome positive", "Diagnostic Odds Ratio", "Apparent Prevalence", \n\t"True Prevalence")
+BSkyres.table <- BSkyres$detail %>%
+  arrange(factor(statistic, levels = c(
+    "se", "sp", "pv.pos", "pv.neg", "diag.ac",
+    "lr.pos", "lr.neg", "nndx", "youden", "p.rout", "p.rin",
+    "p.tpdn", "p.tndp", "p.dntp", "p.dptn", "diag.or",
+    "ap", "tp"
+  )))
+BSkyres.table = BSkyres.table [,c(-1)]
+rownames(BSkyres.table) <- c("Sensitivity", "Specificity", \n\t"Positive Predictive Value (PPV)", "Negative Predictive Value (NPV)", \n\t"Diagnostic Accuracy", "Likelihood Ratio (+ test)", \n\t"Likelihood Ratio (- test)", "Number Needed to Diagnose", \n\t"Youden's Index", "Proportion Outcome Ruled Out", \n\t"Proportion Outcome Ruled In", "Proportion of true outcome negative subjects that test positive", \n\t"Proportion of true outcome positive subjects that test negative", "Proportion of test positive subjects that are outcome negative","Proportion of test negative subjects that are outcome positive", "Diagnostic Odds Ratio", "Apparent Prevalence", \n\t"True Prevalence")
 BSkyFormat(BSkyres$tab, singleTableOutputHeader="Frequency Table: Test = {{selected.testvar | safe}} vs Outcome = {{selected.outvar | safe}}")
 BSkyFormat(BSkyres.table, singleTableOutputHeader="Diagnostic Testing Statistics with {{selected.cilevel | safe}} Level Confidence Intervals")
 #Removing temporary objects
@@ -89,7 +92,7 @@ desctools.exit <- detach("package:DescTools")
         
         this.help = {
             title: diagnosticTesting.t('help.title'),
-            r_help: diagnosticTesting.t('help.r_help'),  //r_help: "help(data,package='utils')",
+            r_help: diagnosticTesting.t('help.r_help'), //Fix by Anil //r_help: "help(data,package='utils')",
             body: diagnosticTesting.t('help.body')
         }
 ;
