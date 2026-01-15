@@ -26,7 +26,7 @@ mytable <- Rev(table({{dataset.name}}\${{selected.testvar | safe}}, {{dataset.na
 BSkyres <- epi.tests(mytable, conf.level={{selected.cilevel | safe}})
 # create the statistic table
 BSkyres.table <- BSkyres$detail %>%
-  arrange(factor(statistic, levels = c(
+  dplyr::arrange(factor(statistic, levels = c(
     "se", "sp", "pv.pos", "pv.neg", "diag.ac",
     "lr.pos", "lr.neg", "nndx", "youden", "p.rout", "p.rin",
     "p.tpdn", "p.tndp", "p.dntp", "p.dptn", "diag.or",
