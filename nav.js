@@ -1,18 +1,8 @@
-/**
-  * This file is protected by copyright (c) 2023-2025 by BlueSky Statistics, LLC.
-  * All rights reserved. The copy, modification, or distribution of this file is not
-  * allowed without the prior written permission from BlueSky Statistics, LLC.
- */
-
-//
-const {getT} = global.requireFromRoot("localization");
-let t = getT('menutoolbar')
-const nav = () => ({
-    "name": t('agreement_top_level_title'),// {ns: 'menutoolbar'}),
-    "tab": "agreement",
+const nav = {
+    "id": "menu-agreement",
     "buttons": [
         {
-            "name": t('agreement_Method'),// {ns: 'menutoolbar'}),
+            "id": "menu-agreement-method",
             "icon": "icon-layout",
             "children": [
                 "./BlandAltman",
@@ -23,7 +13,7 @@ const nav = () => ({
             ]
         },        
         {
-            "name": t('agreement_Scale'),// {ns: 'menutoolbar'}),
+            "id": "menu-agreement-scale",
             "icon": "icon-standardize",
             "children": [
                 "./reliabilityAnalysisCronbachsAlpha",
@@ -32,9 +22,6 @@ const nav = () => ({
         }
 
     ]
-})
-
-module.exports = {
-    nav: nav(),
-    render: () => nav()
 }
+
+module.exports.nav = nav
