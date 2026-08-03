@@ -85,7 +85,8 @@ desctools.exit <- detach("package:DescTools")
                 name: diagnosticTesting.t('navigation'),
                 //  icon: "icon-dt",
                 icon: "icon-table_basic",
-                modal: config.id
+                modal: config.id,
+				positionInNav: 4
             }
         }
         super(config, objects, content);

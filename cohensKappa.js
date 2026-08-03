@@ -89,7 +89,8 @@ BSkyFormat(unlist(agree),singleTableOutputHeader="Bangdiwala Statistics")
             nav: {
                 name: cohensKappa.t('navigation'),
                 icon: "icon-kappa_cohen",
-                modal: config.id
+                modal: config.id,
+				positionInNav: 2
             }
         }
         super(config, objects, content);
